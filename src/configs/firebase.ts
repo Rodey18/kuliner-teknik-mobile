@@ -1,3 +1,9 @@
+/**
+ * @Author: Your name
+ * @Date:   2024-05-14 21:39:29
+ * @Last Modified by:   Your name
+ * @Last Modified time: 2024-05-14 23:26:01
+ */
 import {initializeApp} from 'firebase/app';
 import {getReactNativePersistence, initializeAuth} from 'firebase/auth';
 import {
