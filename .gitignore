@@ -4,8 +4,8 @@
 
 # Yarn
 #
-/yarn.lock
-
+*.lock
+*-lock.json
 # git
 #
 .git
