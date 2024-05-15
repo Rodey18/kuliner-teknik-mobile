@@ -33,7 +33,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
       <View style={styles.listItemContainer}>
         <TouchableOpacity
           style={[styles.listItem, {borderBottomWidth: 1}]}
-          onPress={() => navigation.navigate('ubahprofile')}>
+          onPress={() => navigation.navigate('ChangeProfile')}>
           <View style={styles.listItemIcon}>
             <FontAwesome5Icon name="user-edit" size={17} color="black" />
           </View>
@@ -56,7 +56,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
         {/* Atur Akun */}
         <TouchableOpacity
           style={styles.listItem}
-          onPress={() => navigation.navigate('aturakun')}>
+          onPress={() => navigation.navigate('SetUpAccount')}>
           <View style={styles.listItemIcon}>
             <FontAwesome5Icon name="link" size={17} color="black" />
           </View>

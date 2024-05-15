@@ -1,5 +1,5 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "files.autoSaveDelay": 0
 }

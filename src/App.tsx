@@ -23,6 +23,8 @@ import HomeHeader from 'components/header/HomeHeader';
 import ProductDetailScreen from 'screens/ProductDetailScreen';
 import SearchScreen from 'screens/SearchScreen';
 import ProductListScreen from 'screens/ProductListScreen';
+import SetUpAccountScreen from 'screens/SetUpAccountScreen';
+import ChangeProfileScreen from 'screens/ChangeProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,6 +73,20 @@ function App(): React.JSX.Element {
             <Stack.Screen
               name="Profile"
               component={ProfileScreen}
+              options={({route}) => ({
+                title: route.params?.name,
+              })}
+            />
+            <Stack.Screen
+              name="SetUpAccount"
+              component={SetUpAccountScreen}
+              options={({route}) => ({
+                title: route.params?.name,
+              })}
+            />
+            <Stack.Screen
+              name="ChangeProfile"
+              component={ChangeProfileScreen}
               options={({route}) => ({
                 title: route.params?.name,
               })}
