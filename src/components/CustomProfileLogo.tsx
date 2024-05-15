@@ -7,7 +7,7 @@ const CustomProfileLogo: React.FC = () => {
   const navigation = useNavigation();
 
   const handleProfilePress = () => {
-    navigation.navigate('Profile' as never); // Replace 'Profile' with your actual screen name
+    navigation.navigate('Profile'); // Replace 'Profile' with your actual screen name
   };
 
   return (
