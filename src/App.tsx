@@ -14,7 +14,6 @@ import {StyleSheet} from 'react-native';
 import useAuth from 'hooks/useAuth';
 import HomeScreen from 'screens/HomeScreen';
 import LandingScreen from 'screens/LandingScreen';
-import SignInScreen from 'screens/SignInScreen';
 import SignUpScreen from 'screens/SignUpScreen';
 import FormUserScreen from 'screens/FormUserScreen';
 import ProductListHeader from 'components/header/ProductListHeader';
@@ -23,6 +22,8 @@ import HomeHeader from 'components/header/HomeHeader';
 import ProductDetailScreen from 'screens/ProductDetailScreen';
 import SearchScreen from 'screens/SearchScreen';
 import ProductListScreen from 'screens/ProductListScreen';
+import SignInScreen from 'screens/SignInScreen';
+import NotificationScreen from 'screens/NotificationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,13 @@ function App(): React.JSX.Element {
               })}
             />
             <Stack.Screen
+              name="Notification"
+              component={NotificationScreen}
+              options={({route}) => ({
+                headerTitle: route.params?.name,
+              })}
+            />
+            <Stack.Screen
               name="Product List"
               component={ProductListScreen}
               options={{
@@ -74,6 +82,13 @@ function App(): React.JSX.Element {
               options={({route}) => ({
                 title: route.params?.name,
               })}
+            />
+            <Stack.Screen
+              name="Sign In"
+              component={SignInScreen}
+              options={{
+                headerShown: false,
+              }}
             />
           </Stack.Group>
         ) : (

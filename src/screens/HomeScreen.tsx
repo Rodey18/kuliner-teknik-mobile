@@ -63,6 +63,11 @@ const HomeScreen: React.FC = ({navigation}) => {
           </TouchableOpacity>
         ))}
       </View>
+      <View
+        //TODO: cocokkan dengan halaman login
+        onTouchEnd={() => navigation.navigate('Sign In')}>
+        <Text>Masuk</Text>
+      </View>
     </ScrollView>
   );
 };

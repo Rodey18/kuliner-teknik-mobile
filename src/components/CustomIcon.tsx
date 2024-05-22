@@ -3,20 +3,26 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 
-const CustomProfileLogo: React.FC = () => {
+interface CustomIconProps {
+  route: string;
+  iconName: string;
+  label: string;
+}
+
+const CustomIcon: React.FC<CustomIconProps> = ({route, iconName, label}) => {
   const navigation = useNavigation();
 
-  const handleProfilePress = () => {
-    navigation.navigate('Profile' as never); // Replace 'Profile' with your actual screen name
+  const handleIconPress = () => {
+    navigation.navigate(route as never); // Replace 'Profile' with your actual screen name
   };
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={handleProfilePress}
-      accessibilityLabel="User Profile">
+      onPress={handleIconPress}
+      accessibilityLabel={label}>
       <FontAwesome6Icon
-        name="user"
+        name={iconName}
         size={16}
         color="black"
         style={styles.icon}
@@ -36,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomProfileLogo;
+export default CustomIcon;

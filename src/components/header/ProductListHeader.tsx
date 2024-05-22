@@ -7,11 +7,15 @@ import {COLOR, ICON} from 'constants/theme';
 const dataSearch = ['nasi isan', 'sayur mayur', 'kol berbahaya'];
 
 const ProductListHeader = () => {
+  function handleKeywordPress(keyword: string): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <FontAwesome6Icon name="arrow-left" style={ICON.icon24} />
-        <CustomSearchBar />
+        <CustomSearchBar onPress={undefined} />
       </View>
       <View>
         {dataSearch.map((keyword, index) => (

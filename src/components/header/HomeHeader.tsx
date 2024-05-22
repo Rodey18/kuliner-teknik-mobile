@@ -1,9 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
-import CustomUserLogo from 'components/CustomProfileLogo';
 import {COLOR, CONTAINER} from 'constants/theme';
 import CustomSearchBar from 'components/CustomSearchBar';
+import CustomIcon from 'components/CustomIcon';
 
 const HomeHeader = ({navigation}) => {
   return (
@@ -11,11 +11,17 @@ const HomeHeader = ({navigation}) => {
       <View
         style={styles.headerLeft}
         onTouchEnd={() => navigation.navigate('Search Product')}>
-        <CustomSearchBar isAutoFocus={false} />
+        <CustomSearchBar isAutoFocus={false} onPress={undefined} />
       </View>
       <View style={styles.headerRight}>
-        <FontAwesome6Icon name="bell" size={16} color="black" />
-        <CustomUserLogo />
+        <CustomIcon
+          iconName="bell"
+          route="Notification"
+          label="Notification"></CustomIcon>
+        <CustomIcon
+          iconName="user"
+          route="Profile"
+          label="User Profile"></CustomIcon>
       </View>
     </View>
   );
