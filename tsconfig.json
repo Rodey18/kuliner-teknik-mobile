@@ -14,6 +14,8 @@
       "api": ["./src/api/*"],
       "assets": ["./assets/*"],
       "data": ["./src/data/*"],
+      "navigation": ["./src/navigation/*"],
+      "stores": ["./src/stores/*"],
       "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"]
     }
   }

@@ -13,7 +13,16 @@ module.exports = {
       'module-resolver',
       {
         root: ['.'],
-        extensions: ['.ts', '.tsx', '.jsx', '.js', '.json', '.svg', '.jpg'],
+        extensions: [
+          '.ts',
+          '.tsx',
+          '.jsx',
+          '.js',
+          '.json',
+          '.svg',
+          '.jpg',
+          '.png',
+        ],
         alias: {
           '*': './src',
           components: './src/components',
@@ -26,6 +35,7 @@ module.exports = {
           data: './src/data',
           api: './src/api',
           assets: './assets',
+          navigation: './src/navigation',
         },
       },
     ],

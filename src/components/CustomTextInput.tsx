@@ -47,36 +47,35 @@ const CustomTextInput = (props: customTextInputProps) => {
   }, [props.text]);
 
   return (
-    <>
-      <View style={styles.container}>
-        <TextInput
-          placeholder={props.placeholder}
-          value={props.text}
-          onChangeText={handleOnChangeText}
-          style={styles.text}
-          cursorColor={COLOR.color30}
-          inputMode={props.inputMode}
-          secureTextEntry={showPassword}
-          autoCapitalize="none"
-        />
-        {props.isPassword && (
-          <TouchableOpacity onPress={toggleShowPassword} style={styles.btnEye}>
-            {showPassword ? (
-              <Icon name="eye-slash" size={16} />
-            ) : (
-              <Icon name="eye" size={16} solid />
-            )}
-          </TouchableOpacity>
-        )}
-      </View>
+    <View style={styles.container}>
+      <TextInput
+        placeholder={props.placeholder}
+        value={props.text}
+        onChangeText={handleOnChangeText}
+        style={styles.text}
+        cursorColor={COLOR.color30}
+        inputMode={props.inputMode}
+        secureTextEntry={showPassword}
+        autoCapitalize="none"
+        clearButtonMode="while-editing"
+      />
+      {props.isPassword && (
+        <TouchableOpacity onPress={toggleShowPassword} style={styles.btnEye}>
+          {showPassword ? (
+            <Icon name="eye-slash" size={16} />
+          ) : (
+            <Icon name="eye" size={16} solid />
+          )}
+        </TouchableOpacity>
+      )}
       <Text style={styles.errorText}>{textError}</Text>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexGrow: 1,
   },
   text: {
     ...FONT.identifier,
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
     borderBottomColor: COLOR.line,
     borderBottomWidth: 0.5,
     overflow: 'hidden',
-    width: '100%',
   },
   btnEye: {
     position: 'absolute',

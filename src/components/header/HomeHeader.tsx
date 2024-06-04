@@ -1,11 +1,15 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
-import CustomUserLogo from 'components/CustomProfileLogo';
 import {COLOR, CONTAINER} from 'constants/theme';
-import CustomSearchBar from 'components/CustomSearchBar';
+import CustomSearchBar from 'components/searchbar/CustomSearchBar';
+import CustomProfileLogo from 'components/CustomProfileLogo';
 
-const HomeHeader = ({navigation}) => {
+const HomeHeader = ({navigation}: any) => {
+  const handleProfilePress = () => {
+    navigation.navigate('Profile');
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -15,7 +19,7 @@ const HomeHeader = ({navigation}) => {
       </View>
       <View style={styles.headerRight}>
         <FontAwesome6Icon name="bell" size={16} color="black" />
-        <CustomUserLogo />
+        <CustomProfileLogo onPress={handleProfilePress} />
       </View>
     </View>
   );

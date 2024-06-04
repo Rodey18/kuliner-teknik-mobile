@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">kulinerteknikmobile</string>
+    <string name="app_name">Kuliner Teknik</string>
+    <string name="filter_view_http_gmap">Open Google Maps</string>
 </resources>

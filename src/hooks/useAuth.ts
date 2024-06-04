@@ -1,30 +1,24 @@
 import {useEffect, useState} from 'react';
-import {onAuthStateChanged} from 'firebase/auth';
+import {onAuthStateChanged, User} from 'firebase/auth';
 import {FIREBASE_AUTH} from 'configs/firebase';
 
 type AuthHookResult = {
-  user: User | null;
-};
-
-type User = {
-  email?: string;
-  password?: string;
+  user: User | undefined;
+  loading: boolean;
 };
 
 export default function useAuth(): AuthHookResult {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(FIREBASE_AUTH, authUser => {
-      if (!authUser) {
-        return setUser(null);
-      }
-
-      setUser(authUser);
+      setUser(authUser || undefined);
+      setLoading(false);
     });
 
     return () => unsub();
   }, []);
 
-  return {user};
+  return {user, loading};
 }

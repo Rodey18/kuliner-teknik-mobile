@@ -1,14 +1,15 @@
 import {StyleSheet} from 'react-native';
 
 export const COLOR = {
-  color10: '#B25E00',
-  color30: '#000',
-  color60: '#fff',
-  gray: '#E8E8E6',
-  red: '#EA001F',
-  line: '#D9D9D9',
-  star: '#FFC41C',
-  nostar: '#B2B0AA',
+  color10: 'rgb(178, 94, 0)',
+  color30: 'rgb(0, 0, 0)',
+  color60: 'rgb(255, 255, 255)',
+  gray: 'rgb(232, 232, 230)',
+  red: 'rgb(234, 0, 31)',
+  line: 'rgb(217, 217, 217)',
+  star: 'rgb(255, 196, 28)',
+  nostar: 'rgb(178, 176, 170)',
+  green: 'rgb(71, 166, 55)',
 };
 
 export const FONT = StyleSheet.create({
@@ -19,7 +20,7 @@ export const FONT = StyleSheet.create({
     color: COLOR.color30,
   },
   subtitle: {
-    fontFamily: 'DMSans-Medium',
+    fontFamily: 'DMSans-Bold',
     fontSize: 16,
     lineHeight: 24,
     color: COLOR.color30,
@@ -46,28 +47,24 @@ export const FONT = StyleSheet.create({
 
 export const CONTAINER = StyleSheet.create({
   flexbox: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   flexgap8: {
-    display: 'flex',
     gap: 8,
   },
   flexgap16: {
-    display: 'flex',
     gap: 16,
   },
   checkbox: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     gap: 12,
   },
   flexrow: {
-    display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
