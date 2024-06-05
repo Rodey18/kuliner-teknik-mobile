@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 
-const Header = ({children}) => {
+const Header = ({children}: any) => {
   return <View style={styles.headerContainer}>{children}</View>;
 };
 

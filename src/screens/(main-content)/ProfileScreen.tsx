@@ -43,7 +43,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
           style={[styles.listItem, {borderBottomWidth: 1}]}
           onPress={() => navigation.navigate('Change Profile')}>
           <View style={styles.listItemIcon}>
-            <FontAwesome5Icon name="user-edit" size={17} color="black" />
+            <FontAwesome5Icon name="user-edit" size={20} color="black" />
           </View>
           <Text style={styles.listItemText}>Ubah Profil</Text>
         </TouchableOpacity>
@@ -66,7 +66,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
           style={styles.listItem}
           onPress={() => navigation.navigate('Setting')}>
           <View style={styles.listItemIcon}>
-            <FontAwesome5Icon name="link" size={17} color="black" />
+            <FontAwesome5Icon name="link" size={20} color="black" />
           </View>
           <Text style={styles.listItemText}>Atur Akun</Text>
         </TouchableOpacity>
@@ -96,7 +96,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
         {/* Beri Rating */}
         <View style={styles.listItem}>
           <View style={styles.listItemIcon}>
-            <FontAwesome5Icon name="star" size={17} color="black" />
+            <FontAwesome5Icon name="star" size={20} color="black" />
           </View>
           <Text style={styles.listItemText}>Beri Rating</Text>
         </View>

@@ -39,7 +39,12 @@ const ChangeProfileScreen: React.FC<Props> = ({navigation}: any) => {
 
   return (
     <View style={styles.page}>
-      <Text style={styles.content}>Ganti Foto</Text>
+      <View style={CONTAINER.flexbox}>
+        <View style={styles.circleImage}>
+          <Text style={styles.circleText}>s</Text>
+        </View>
+        <Text style={styles.content}>Ganti Foto</Text>
+      </View>
       <View>
         <Text style={styles.subtitle}>Akun</Text>
         <KeyboardAvoidingView behavior="padding">
@@ -141,6 +146,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.gray,
     borderRadius: 8,
     paddingHorizontal: 8,
+  },
+  circleImage: {
+    width: 75,
+    height: 75,
+    backgroundColor: COLOR.nostar,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  circleText: {
+    ...FONT.title,
+    color: COLOR.color60,
   },
 });
 

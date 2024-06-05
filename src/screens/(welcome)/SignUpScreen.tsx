@@ -34,7 +34,12 @@ const SignUpScreen = ({navigation}: any) => {
   const handleSubmit = async () => {
     try {
       if (emailText && passwordText) {
-        const result = await signup(emailText, passwordText);
+        const result = await signup(
+          emailText,
+          passwordText,
+          phoneText,
+          usernameText,
+        );
         if (result?.error) {
           throw Error('Terdapat kesalahan dalam melakukan sign in');
         }

@@ -9,20 +9,20 @@ interface UserProfile {
   // Tambahkan properti tambahan sesuai kebutuhan, seperti alamat, dll.
 }
 
-async function createUser({username, email, birth_date, phone, job}: User) {
-  try {
-    const docRef = await addDoc(collection(FIREBASE_DB, 'users'), {
-      username,
-      email,
-      birth_date,
-      phone,
-      job,
-    });
-    console.log('Document written with ID: ', docRef.id);
-  } catch (error) {
-    console.error('Error saving user data:', error);
-  }
-}
+// async function createUser({username, email, birth_date, phone, job}: User) {
+//   try {
+//     const docRef = await addDoc(collection(FIREBASE_DB, 'users'), {
+//       username,
+//       email,
+//       birth_date,
+//       phone,
+//       job,
+//     });
+//     console.log('Document written with ID: ', docRef.id);
+//   } catch (error) {
+//     console.error('Error saving user data:', error);
+//   }
+// }
 
 async function updateUsers(props: UserProfile) {
   try {

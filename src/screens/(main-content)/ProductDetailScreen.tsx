@@ -1,4 +1,10 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {useRestaurantContext} from 'stores/restaurant/RestaurantContext';
 import ProductDetailHeader from 'components/header/ProductDetailHeader';
@@ -9,17 +15,22 @@ import CustomProductCard from 'components/card/CustomProductCard';
 import CustomLine from 'components/CustomLine';
 import OpenURLButton from 'components/button/OpenURLButton';
 import {defaultRestaurant} from 'constants/default';
+import OperationalTimeModal from 'components/modal/OperationalTimeModal';
 
 const ProductDetailScreen = ({navigation, route}: any) => {
   const {id} = route.params;
   const {restaurants} = useRestaurantContext();
+  const [scrollY, setScrollY] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
 
   const restaurant = restaurants.find(r => r.id === id) ?? defaultRestaurant;
 
   const isOpen = restaurant?.isOpen === true ? 'Buka' : 'Tutup';
   const products = restaurant?.foods;
-
-  const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = (event: any) => {
     setScrollY(event.nativeEvent.contentOffset.y);
@@ -71,18 +82,25 @@ const ProductDetailScreen = ({navigation, route}: any) => {
             color={COLOR.color30}
           />
         </View>
-        <View style={styles.data}>
-          <View style={styles.viewContainer}>
-            <FontAwesome6Icon size={20} name="clock" color={COLOR.color30} />
-            <Text style={FONT.identifier}>
-              <Text style={{color: COLOR.green}}>{isOpen}</Text>{' '}
-              {restaurant?.hours}
-            </Text>
-          </View>
-          <FontAwesome6Icon
-            size={12}
-            name="chevron-right"
-            color={COLOR.color30}
+        <View>
+          <TouchableOpacity style={styles.data} onPress={toggleModal}>
+            <View style={styles.viewContainer}>
+              <FontAwesome6Icon size={20} name="clock" color={COLOR.color30} />
+              <Text style={FONT.identifier}>
+                <Text style={{color: COLOR.green}}>{isOpen}</Text>{' '}
+                {restaurant?.hours}
+              </Text>
+            </View>
+            <FontAwesome6Icon
+              size={12}
+              name="chevron-right"
+              color={COLOR.color30}
+            />
+          </TouchableOpacity>
+          <OperationalTimeModal
+            modalVisible={isModalVisible}
+            onPress={toggleModal}
+            id={id}
           />
         </View>
         <View style={styles.data}>
