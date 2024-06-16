@@ -15,10 +15,10 @@ const HomeHeader = ({navigation}: any) => {
       <View
         style={styles.headerLeft}
         onTouchEnd={() => navigation.navigate('Search Product')}>
-        <CustomSearchBar isAutoFocus={false} />
+        <CustomSearchBar isAutoFocus={false} text="" />
       </View>
       <View style={styles.headerRight}>
-        <FontAwesome6Icon name="bell" size={16} color="black" />
+        <FontAwesome6Icon name="bell" size={24} color="black" />
         <CustomProfileLogo onPress={handleProfilePress} />
       </View>
     </View>

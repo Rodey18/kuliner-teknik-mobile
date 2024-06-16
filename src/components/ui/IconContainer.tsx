@@ -1,5 +1,5 @@
-import {StyleSheet, TouchableHighlight, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, TouchableHighlight} from 'react-native';
+import React from 'react';
 import {COLOR} from 'constants/theme';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
 
@@ -7,22 +7,37 @@ type Icon = {
   icon: string;
   size: number;
   isSolid: boolean;
-  onPress: () => any;
+  onPress?: () => any;
+  color?: string;
+  isButton: boolean;
 };
 
 const IconContainer: React.FC<Icon> = (props: Icon) => {
   return (
-    <TouchableHighlight
-      onPress={props.onPress}
-      style={styles.button}
-      underlayColor={COLOR.line}>
-      <FontAwesome6Icon
-        size={props.size}
-        name={props.icon}
-        solid={props.isSolid}
-        style={styles.icon}
-      />
-    </TouchableHighlight>
+    <>
+      {props.isButton === true ? (
+        <TouchableHighlight
+          onPress={props.onPress}
+          style={styles.button}
+          underlayColor={COLOR.line}>
+          <FontAwesome6Icon
+            size={props.size}
+            name={props.icon}
+            solid={props.isSolid}
+            color={props.color}
+          />
+        </TouchableHighlight>
+      ) : (
+        <TouchableHighlight onPress={props.onPress} underlayColor={COLOR.line}>
+          <FontAwesome6Icon
+            size={props.size}
+            name={props.icon}
+            solid={props.isSolid}
+            color={props.color}
+          />
+        </TouchableHighlight>
+      )}
+    </>
   );
 };
 

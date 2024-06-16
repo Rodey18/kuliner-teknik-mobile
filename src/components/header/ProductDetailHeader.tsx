@@ -22,12 +22,14 @@ const ProductDetailHeader = ({navigation, styleHeader}) => {
           size={24}
           onPress={handleBackNavigation}
           isSolid={false}
+          isButton={true}
         />
         <IconContainer
           icon="bookmark"
           size={24}
           onPress={handleBookmark}
           isSolid={isBookmark}
+          isButton={true}
         />
       </Header>
     </View>

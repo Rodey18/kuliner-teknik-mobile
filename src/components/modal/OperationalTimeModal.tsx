@@ -3,15 +3,11 @@ import React from 'react';
 import CloseButton from 'components/button/CloseButton';
 import {COLOR, FONT} from 'constants/theme';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
-import {useRestaurantContext} from 'stores/restaurant/RestaurantContext';
-import {defaultRestaurant} from 'constants/default';
 import CustomLine from 'components/CustomLine';
+import TextHighlight from 'components/ui/TextHighlight';
+import OperatingHours from 'components/ui/OperatingHours';
 
-const OperationalTimeModal = ({modalVisible, onPress, id}: any) => {
-  const {restaurants} = useRestaurantContext();
-  const restaurant = restaurants.find(r => r.id === id) ?? defaultRestaurant;
-
-  const isOpen = restaurant?.isOpen === true ? 'Buka' : 'Tutup';
+const OperationalTimeModal = ({modalVisible, onPress, mitra}: any) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
@@ -19,17 +15,13 @@ const OperationalTimeModal = ({modalVisible, onPress, id}: any) => {
           <View style={styles.headerModal}>
             <View style={styles.viewContainer}>
               <FontAwesome6Icon size={20} name="clock" color={COLOR.color30} />
-              <Text style={FONT.identifier}>
-                <Text style={{color: COLOR.green}}>Sekarang {isOpen}</Text>
-              </Text>
+              <TextHighlight mitra={mitra} />
             </View>
+            <Text style={styles.titleContent}>Jam Operasional</Text>
             <CloseButton onPress={onPress} />
           </View>
           <CustomLine type="horizontal" />
-          <View style={styles.content}>
-            <Text style={FONT.subtitle}>Jam Operasional</Text>
-            {/* // TODO: data jam operasional  */}
-          </View>
+          <OperatingHours schedule={mitra.schedule} />
         </View>
       </View>
     </Modal>
@@ -64,7 +56,7 @@ const styles = StyleSheet.create({
   headerModal: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
+    paddingHorizontal: 32,
     paddingVertical: 8,
   },
   viewContainer: {
@@ -76,5 +68,10 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
     marginTop: 12,
+    gap: 8,
+  },
+  titleContent: {
+    alignSelf: 'center',
+    ...FONT.subtitle,
   },
 });

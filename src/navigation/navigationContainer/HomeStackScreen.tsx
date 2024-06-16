@@ -6,17 +6,17 @@ import ProductDetailScreen from 'screens/(main-content)/ProductDetailScreen';
 import HomeHeader from 'components/header/HomeHeader';
 import HomeScreen from 'screens/(main-content)/HomeScreen';
 import SearchScreen from 'screens/(main-content)/SearchScreen';
-import LandingScreen from 'screens/(welcome)/LandingScreen';
 import {COLOR} from 'constants/theme';
-import {Restaurant} from 'utils/type';
-import {RestaurantProvider} from 'stores/restaurant/RestaurantContext';
 import ProductListScreen from 'screens/(main-content)/ProductListScreen';
 import ChangeProfileScreen from 'screens/(main-content)/ChangeProfileScreen';
 import SettingScreen from 'screens/(main-content)/SettingScreen';
+import {Mitra} from 'utils/type';
+import {MitraProvider} from 'stores/mitra/MitraContext';
+import ReviewScreen from 'screens/(main-content)/ReviewScreen';
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [restaurants, setRestaurants] = useState<Mitra[]>([]);
 
   const fetchRestaurants = async () => {
     const data = restaurants;
@@ -28,7 +28,7 @@ const HomeStackScreen = () => {
   });
 
   return (
-    <RestaurantProvider>
+    <MitraProvider>
       <HomeStack.Navigator
         screenOptions={{
           headerTitle: '',
@@ -71,6 +71,11 @@ const HomeStackScreen = () => {
           }}
         />
         <HomeStack.Screen
+          name="Review"
+          component={ReviewScreen}
+          options={{headerTitle: 'Ulasan'}}
+        />
+        <HomeStack.Screen
           name="Profile"
           component={ProfileScreen}
           options={{headerTitle: 'Profil'}}
@@ -86,7 +91,7 @@ const HomeStackScreen = () => {
           options={{headerTitle: 'Atur Akun'}}
         />
       </HomeStack.Navigator>
-    </RestaurantProvider>
+    </MitraProvider>
   );
 };
 

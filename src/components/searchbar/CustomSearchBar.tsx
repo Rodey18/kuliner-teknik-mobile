@@ -10,16 +10,21 @@ import {SearchBar} from 'react-native-elements';
 
 interface CustomSearchBarProps {
   isAutoFocus?: boolean;
-  text?: string;
-  onPress?: (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void;
+  text: string;
+  onPress?: (
+    keywordText: string,
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
+  ) => void;
+  placeholder: string;
 }
 
 const CustomSearchBar: React.FC<CustomSearchBarProps> = ({
   isAutoFocus = false,
   text,
   onPress,
+  placeholder,
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>(text);
 
   const handleSearchChange = (searchText: string) => {
     setSearchQuery(searchText);
@@ -29,19 +34,19 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
   ) => {
     if (searchQuery.trim()) {
-      onPress?.(e);
+      onPress?.(searchQuery, e);
     }
   };
 
   return (
     <View style={styles.container}>
       <SearchBar
-        placeholder="Cari alamat di sekitar"
+        placeholder={placeholder}
         containerStyle={styles.searchBarContainer}
         inputContainerStyle={styles.searchBarInputContainer}
         leftIconContainerStyle={styles.leftIconContainerStyle}
         onChangeText={handleSearchChange}
-        value={text || searchQuery}
+        value={searchQuery}
         autoFocus={isAutoFocus}
         onSubmitEditing={handleSearchPress}
       />

@@ -1,37 +1,36 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {Image} from 'react-native-elements';
 import {COLOR, FONT} from 'constants/theme';
-import {Food} from 'utils/type';
 import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
-import {priceConverter} from 'utils/helper';
+import FastImage from 'react-native-fast-image';
+import {Product} from 'utils/type';
 
 type ProductCard = {
   navigation: any;
-  product: Food;
+  product: Product;
 };
 
 const CustomProductCard = (prop: ProductCard) => {
-  const [isFavorit, setIsFavorit] = useState(prop.product.favorit);
+  const [isFavorit, setIsFavorit] = useState(false);
 
   const handleFavorit = () => {
     setIsFavorit(!isFavorit);
   };
 
   return (
-    <Pressable
-      style={styles.restaurantCard}
-      key={prop.product.id}
-      onPress={() =>
-        prop.navigation.navigate('Product Detail', {id: prop.product.id})
-      }>
-      <Image source={prop.product.image} style={styles.restaurantImage} />
-      <View style={styles.restaurantDetails}>
+    <Pressable style={styles.mitraCard} key={prop.product.id}>
+      <FastImage
+        source={{
+          uri: prop.product.image,
+          priority: FastImage.priority.high,
+          cache: FastImage.cacheControl.web,
+        }}
+        style={styles.mitraImage}
+      />
+      <View style={styles.mitraDetails}>
         <Text style={FONT.subtitle}>{prop.product.name}</Text>
         <Text style={FONT.identifier}>{prop.product.desc}</Text>
-        <Text style={styles.identifier}>
-          Rp{priceConverter(prop.product.price)}
-        </Text>
+        <Text style={styles.identifier}>Rp{prop.product.price}</Text>
       </View>
       <FontAwesome6Icon
         size={24}
@@ -47,17 +46,17 @@ const CustomProductCard = (prop: ProductCard) => {
 export default CustomProductCard;
 
 const styles = StyleSheet.create({
-  restaurantCard: {
+  mitraCard: {
     borderRadius: 10,
     flexDirection: 'row',
     height: 100,
   },
-  restaurantImage: {
+  mitraImage: {
     width: 100,
     height: 100,
     borderRadius: 10,
   },
-  restaurantDetails: {
+  mitraDetails: {
     marginLeft: 10,
     flex: 1,
     gap: 4,

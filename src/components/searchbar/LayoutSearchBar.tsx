@@ -1,13 +1,17 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomSearchBar from './CustomSearchBar';
 import {COLOR, FONT} from 'constants/theme';
 import {searchHistory} from 'data/dummy';
 import {ColorWithOpacity} from 'utils/helper';
 import CustomCardContainer from 'components/card/CustomCardContainer';
+import {useMitraContext} from 'stores/mitra/MitraContext';
+import {Mitra} from 'utils/type';
 
 const LayoutSearchBar = ({navigation, type, keyword}) => {
+  const {mitras} = useMitraContext();
   const [keywords, setKeywords] = useState<string>(keyword);
+  const [filteredMitras, setFilteredMitras] = useState<Mitra[]>([]);
 
   const handleKeywordPress = (keywordText: string) => {
     setKeywords(keywordText);
@@ -15,9 +19,20 @@ const LayoutSearchBar = ({navigation, type, keyword}) => {
   };
 
   const handleSearchPress: any = (keywordText: string) => {
+    const filtered = mitras.filter(mitra =>
+      mitra.name.toLowerCase().includes(keywordText.toLowerCase()),
+    );
+    setFilteredMitras(filtered);
     navigation.navigate('Product List', {keyword: keywordText});
   };
 
+  useEffect(() => {
+    if (keyword.length > 0) {
+      handleSearchPress(keyword);
+    }
+  }, [keyword]);
+
+  console.log(filteredMitras.length === 0);
   return (
     <View style={styles.container}>
       <View>
@@ -28,11 +43,22 @@ const LayoutSearchBar = ({navigation, type, keyword}) => {
         />
       </View>
       {type === 'list' ? (
-        <CustomCardContainer
-          navigation={navigation}
-          isHorizontal={false}
-          showIndicator={false}
-        />
+        <>
+          {filteredMitras.length === 0 ? (
+            <Text style={styles.noticeText}>
+              Restaurant tidak ditemukan! Silakan cari lagi atau melihat list
+              dibawah.
+            </Text>
+          ) : (
+            ''
+          )}
+          <CustomCardContainer
+            navigation={navigation}
+            isHorizontal={false}
+            showIndicator={false}
+            mitras={filteredMitras}
+          />
+        </>
       ) : (
         <>
           <View style={styles.branch}>
@@ -98,5 +124,10 @@ const styles = StyleSheet.create({
   },
   branch: {
     gap: 16,
+  },
+  noticeText: {
+    textAlign: 'center',
+    marginBottom: 10,
+    ...FONT.detail,
   },
 });

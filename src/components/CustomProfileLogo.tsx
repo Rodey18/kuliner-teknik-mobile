@@ -10,7 +10,7 @@ const CustomProfileLogo = ({onPress}: any) => {
       accessibilityLabel="User Profile">
       <FontAwesome6Icon
         name="user"
-        size={16}
+        size={24}
         color="black"
         style={styles.icon}
       />

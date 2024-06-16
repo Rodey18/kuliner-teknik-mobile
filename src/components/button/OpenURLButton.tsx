@@ -4,35 +4,25 @@ import {Pressable, Alert, Linking, StyleSheet} from 'react-native';
 type OpenURLButtonProps = {
   url: string;
   children: any;
+  styles?: any;
 };
 
-const OpenURLButton = ({url, children}: OpenURLButtonProps) => {
+const OpenURLButton = ({url, children, styles}: OpenURLButtonProps) => {
   const handlePress = useCallback(async () => {
-    const link = `https://www.google.com/maps/search/${url}`;
-    const supported = await Linking.canOpenURL(link);
+    const supported = await Linking.canOpenURL(url);
 
     if (supported) {
-      await Linking.openURL(link);
+      await Linking.openURL(url);
     } else {
-      Alert.alert(`Don't know how to open this URL: ${link}`);
+      Alert.alert(`Don't know how to open this URL: ${url}`);
     }
   }, [url]);
 
   return (
-    <Pressable onPress={handlePress} style={styles.buttonContainer}>
+    <Pressable onPress={handlePress} style={styles}>
       {children}
     </Pressable>
   );
 };
 
 export default OpenURLButton;
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 12,
-    height: '100%',
-  },
-});

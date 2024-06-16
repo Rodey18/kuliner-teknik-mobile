@@ -1,11 +1,13 @@
 import {ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import CustomCard from './CustomCard';
+import {Mitra} from 'utils/type';
 
 type ScrollCard = {
   isHorizontal: boolean;
   showIndicator: boolean;
   navigation: any;
+  mitras: Mitra[];
 };
 
 const CustomCardContainer: React.FC<ScrollCard> = (props: ScrollCard) => {
@@ -17,6 +19,7 @@ const CustomCardContainer: React.FC<ScrollCard> = (props: ScrollCard) => {
       <CustomCard
         isHorizontal={props.isHorizontal}
         navigation={props.navigation}
+        mitras={props.mitras}
       />
     </ScrollView>
   );

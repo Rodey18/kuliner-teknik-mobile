@@ -14,23 +14,20 @@ declare module '@env' {
 export type User = {
   username: string;
   email: string;
-  birth_date?: Date;
   phone?: string;
-  job?: string;
+  favorit: Favorit[];
 };
 
-export type Food = {
+export type Favorit = {
+  id: string;
+};
+
+export type Product = {
   id: number;
   name: string;
   desc?: string;
   price: string;
-  image?: ImageSourcePropType;
-  favorit: boolean;
-};
-
-export type Address = {
-  text: string;
-  gmap: string;
+  image?: string | ImageSourcePropType;
 };
 
 export type Whatsapp = {
@@ -38,17 +35,23 @@ export type Whatsapp = {
   group: string;
 };
 
-export type Restaurant = {
-  id: number;
+export type Schedule = {
+  [day: string]: {
+    open_time: string;
+    close_time: string;
+  };
+};
+
+export type Mitra = {
+  id: string;
   name: string;
-  hours: string;
-  priceRange: string;
-  image?: ImageSourcePropType;
-  foods?: Food[];
+  schedule: Schedule;
+  image?: string | ImageSourcePropType;
+  products?: Product[];
   rating: number;
-  address: Address;
-  isOpen: boolean;
-  whatsapp: Whatsapp;
+  address: string;
+  is_open: boolean;
+  whatsapp: string;
 };
 
 export type FilterSlider = {

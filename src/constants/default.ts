@@ -1,6 +1,6 @@
-import {Restaurant} from 'utils/type';
+import {Mitras} from 'utils/type';
 
-export const defaultRestaurant: Restaurant = {
+export const defaultMitra: Mitras = {
   id: -1,
   name: 'unknown',
   hours: '',
@@ -16,3 +16,13 @@ export const defaultRestaurant: Restaurant = {
     group: '',
   },
 };
+
+export const days = [
+  'SENIN',
+  'SELASA',
+  'RABU',
+  'KAMIS',
+  'JUMAT',
+  'SABTU',
+  'MINGGU',
+];

@@ -3,16 +3,22 @@ import React from 'react';
 import {Image} from 'react-native-elements';
 import {COLOR, FONT} from 'constants/theme';
 import FastImage from 'react-native-fast-image';
+import TextHighlight from 'components/ui/TextHighlight';
+import {calculatePriceRange, getMitraTimeRange} from 'utils/helper';
+import {Mitra} from 'utils/type';
+import {useMitraContext} from 'stores/mitra/MitraContext';
 import {filterSliders} from 'data/dummy';
-import {useRestaurantContext} from 'stores/restaurant/RestaurantContext';
 
 type Card = {
   isHorizontal: boolean;
   navigation: any;
+  mitras: Mitra[];
 };
 
 const CustomCard: React.FC<Card> = (props: Card) => {
-  const {restaurants} = useRestaurantContext();
+  const {mitras: contextMitras} = useMitraContext();
+  const {mitras = []} = props;
+  const effectiveMitras = mitras.length > 0 ? mitras : contextMitras;
 
   return (
     <>
@@ -51,21 +57,38 @@ const CustomCard: React.FC<Card> = (props: Card) => {
         </View>
       ) : (
         <>
-          {restaurants.map(restaurant => (
-            <Pressable
-              style={styles.restaurantCard}
-              key={restaurant.id}
-              onPress={() =>
-                props.navigation.navigate('Product Detail', {id: restaurant.id})
-              }>
-              <Image source={restaurant.image} style={styles.restaurantImage} />
-              <View style={styles.restaurantDetails}>
-                <Text style={FONT.title}>{restaurant.name}</Text>
-                <Text style={styles.identifier}>🕰️ {restaurant.hours}</Text>
-                <Text style={styles.identifier}>💲{restaurant.priceRange}</Text>
-              </View>
-            </Pressable>
-          ))}
+          {effectiveMitras.map((mitra: Mitra) => {
+            const {openTime, closeTime} = getMitraTimeRange(
+              mitra.schedule,
+              new Date(),
+            );
+            const timeRange = openTime + ' - ' + closeTime;
+            const priceRange = calculatePriceRange(mitra.products);
+            return (
+              <Pressable
+                style={styles.mitraCard}
+                key={mitra.id}
+                onPress={() =>
+                  props.navigation.navigate('Product Detail', {id: mitra.id})
+                }>
+                <FastImage
+                  source={{
+                    uri: mitra?.image,
+                    priority: FastImage.priority.high,
+                    cache: FastImage.cacheControl.web,
+                  }}
+                  style={styles.mitraImage}
+                />
+                <View style={styles.mitraDetails}>
+                  <Text style={FONT.title}>{mitra.name}</Text>
+                  <TextHighlight mitra={mitra}>
+                    <Text style={styles.identifier}>{timeRange}</Text>
+                  </TextHighlight>
+                  <Text style={styles.identifier}>💲{priceRange}</Text>
+                </View>
+              </Pressable>
+            );
+          })}
         </>
       )}
     </>
@@ -100,19 +123,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  restaurantCard: {
+  mitraCard: {
     borderRadius: 10,
     marginBottom: 24,
     flexDirection: 'row',
     alignItems: 'center',
     height: 100,
   },
-  restaurantImage: {
+  mitraImage: {
     width: 100,
     height: 100,
     borderRadius: 10,
   },
-  restaurantDetails: {
+  mitraDetails: {
     marginLeft: 10,
     flex: 1,
   },

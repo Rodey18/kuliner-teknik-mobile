@@ -48,23 +48,6 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: 10,
   },
-  restaurantCard: {
-    borderRadius: 10,
-    marginBottom: 24,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  restaurantImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-  },
-  restaurantDetails: {
-    marginLeft: 10,
-    flex: 1,
-  },
-  restaurantName: FONT.title,
-  subtitle: FONT.identifier,
   title: FONT.title,
   bestForYouContainer: {
     flexDirection: 'row',
