@@ -15,7 +15,11 @@ const HomeHeader = ({navigation}: any) => {
       <View
         style={styles.headerLeft}
         onTouchEnd={() => navigation.navigate('Search Product')}>
-        <CustomSearchBar isAutoFocus={false} text="" />
+        <CustomSearchBar
+          isAutoFocus={false}
+          placeholder="Cari Warung / Makanan"
+          text=""
+        />
       </View>
       <View style={styles.headerRight}>
         <FontAwesome6Icon name="bell" size={24} color="black" />

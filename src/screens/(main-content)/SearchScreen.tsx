@@ -3,7 +3,12 @@ import LayoutSearchBar from 'components/searchbar/LayoutSearchBar';
 
 const SearchScreen = ({navigation}: any) => {
   return (
-    <LayoutSearchBar type={'category'} navigation={navigation} keyword={''} />
+    <LayoutSearchBar
+      type={'category'}
+      navigation={navigation}
+      keyword={''}
+      placeholder={'Cari Warung / Makanan'}
+    />
   );
 };
 

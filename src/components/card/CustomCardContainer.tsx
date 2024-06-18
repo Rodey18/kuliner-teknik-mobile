@@ -7,7 +7,7 @@ type ScrollCard = {
   isHorizontal: boolean;
   showIndicator: boolean;
   navigation: any;
-  mitras: Mitra[];
+  mitras?: Mitra[];
 };
 
 const CustomCardContainer: React.FC<ScrollCard> = (props: ScrollCard) => {

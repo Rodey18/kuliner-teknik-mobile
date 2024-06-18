@@ -65,6 +65,10 @@ export const checkPhoneNumber = (text: string) => {
     return {isValid: false, message: 'Nomor telepon harus diisi!'};
   }
 
+  if (text.startsWith('0') || text.startsWith('62')) {
+    return {isValid: false, message: 'Tidak perlu diawali 0 atau 62'};
+  }
+
   if (!/^\d+$/.test(text)) {
     return {
       isValid: false,
@@ -89,4 +93,15 @@ export const PhoneNumberFormatter = (text: string) => {
     return '+62' + text.slice(1);
   }
   return '+62' + text;
+};
+
+export const checkUrl = (text: string) => {
+  if (!text.startsWith('https://') || !text.startsWith('http://')) {
+    return {
+      isValid: false,
+      message: 'Link tidak valid',
+    };
+  }
+
+  return {isValid: true, message: ''};
 };

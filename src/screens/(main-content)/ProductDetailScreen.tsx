@@ -78,14 +78,17 @@ const ProductDetailScreen = ({navigation, route}: any) => {
           </Pressable>
         </View>
         <OpenURLButton
-          url={`https://www.google.com/maps/search/${mitra.name}`}
+          url={
+            mitra.address.gmap ||
+            `https://www.google.com/maps/search/${mitra.name}`
+          }
           styles={styles.addressContainer}>
           <FontAwesome6Icon
             size={24}
             name="location-dot"
             color={COLOR.color30}
           />
-          <Text style={styles.address}>{mitra?.address}</Text>
+          <Text style={styles.address}>{mitra.address.text}</Text>
           <FontAwesome6Icon
             size={12}
             name="chevron-right"
@@ -116,7 +119,7 @@ const ProductDetailScreen = ({navigation, route}: any) => {
           <FontAwesome6Icon size={24} name="whatsapp" color={COLOR.color30} />
           <TouchableOpacity
             onPress={() => handleCopyToClipboard(mitra?.whatsapp)}>
-            <Text style={FONT.identifier}>{mitra?.whatsapp}</Text>
+            <Text style={FONT.identifier}>0{mitra?.whatsapp}</Text>
           </TouchableOpacity>
           <CustomLine type={'vertical'} />
           <OpenURLButton

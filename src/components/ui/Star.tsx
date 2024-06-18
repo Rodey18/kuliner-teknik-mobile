@@ -1,32 +1,20 @@
-import {StyleSheet, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import IconContainer from './IconContainer';
 import {COLOR} from 'constants/theme';
 
-const Star = ({available}) => {
+const Star = ({available, isHalf = false}) => {
   return (
     <View>
-      {available ? (
-        <IconContainer
-          icon="star"
-          size={16}
-          isSolid
-          color={COLOR.star}
-          isButton={false}
-        />
-      ) : (
-        <IconContainer
-          icon="star"
-          size={16}
-          isSolid
-          color={COLOR.nostar}
-          isButton={false}
-        />
-      )}
+      <IconContainer
+        icon={available ? (isHalf ? 'star-half-stroke' : 'star') : 'star'}
+        size={16}
+        isSolid
+        color={available ? COLOR.star : COLOR.nostar}
+        isButton={false}
+      />
     </View>
   );
 };
 
 export default Star;
-
-const styles = StyleSheet.create({});

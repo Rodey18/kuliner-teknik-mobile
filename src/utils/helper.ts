@@ -1,6 +1,7 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import {Alert} from 'react-native';
 import {Product, Schedule} from './type';
+import {Buffer} from 'buffer';
 
 export const ColorWithOpacity = (color: string, opacity: number): string => {
   return `rgba(${color.slice(4, -1)}, ${opacity})`;
@@ -84,4 +85,20 @@ export const calculatePriceRange = (products: Product[]) => {
     priceFormatter(minPrice) + ' - ' + priceFormatter(maxPrice);
 
   return priceRange;
+};
+
+export const generateProfileImage = async (username: string) => {
+  // Extract the first two uppercase letters from the username
+  const svgText = username.slice(0, 2).toUpperCase();
+
+  const svgMarkup = `
+    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="#f0f0f0" />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="30" fill="#333">${svgText}</text>
+    </svg>
+  `;
+
+  const svgBuffer = Buffer.from(svgMarkup, 'utf-8');
+
+  return svgBuffer;
 };

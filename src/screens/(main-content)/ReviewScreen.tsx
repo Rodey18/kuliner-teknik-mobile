@@ -19,7 +19,7 @@ const ReviewScreen = ({navigation, route}: any) => {
           </View>
           <Text style={styles.textIdentifier}>4k+ rating</Text>
         </View>
-        <StarIndicator StarNumber={2} />
+        <StarIndicator StarNumber={mitra.rating} />
       </View>
       <Pressable style={styles.createUlasan}>
         <IconContainer

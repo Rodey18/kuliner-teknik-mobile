@@ -23,7 +23,7 @@ export type Favorit = {
 };
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   desc?: string;
   price: string;
@@ -42,6 +42,11 @@ export type Schedule = {
   };
 };
 
+export type Address = {
+  text: string;
+  gmap?: string;
+};
+
 export type Mitra = {
   id: string;
   name: string;
@@ -49,9 +54,19 @@ export type Mitra = {
   image?: string | ImageSourcePropType;
   products?: Product[];
   rating: number;
-  address: string;
+  address: Address;
   is_open: boolean;
   whatsapp: string;
+  type: string;
+};
+
+export type Request = {
+  id?: string;
+  name: string;
+  address: Address;
+  whatsapp: string;
+  type: string;
+  status: string;
 };
 
 export type FilterSlider = {

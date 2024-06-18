@@ -8,7 +8,7 @@ import CustomCardContainer from 'components/card/CustomCardContainer';
 import {useMitraContext} from 'stores/mitra/MitraContext';
 import {Mitra} from 'utils/type';
 
-const LayoutSearchBar = ({navigation, type, keyword}) => {
+const LayoutSearchBar = ({navigation, type, keyword, placeholder}) => {
   const {mitras} = useMitraContext();
   const [keywords, setKeywords] = useState<string>(keyword);
   const [filteredMitras, setFilteredMitras] = useState<Mitra[]>([]);
@@ -19,9 +19,23 @@ const LayoutSearchBar = ({navigation, type, keyword}) => {
   };
 
   const handleSearchPress: any = (keywordText: string) => {
-    const filtered = mitras.filter(mitra =>
-      mitra.name.toLowerCase().includes(keywordText.toLowerCase()),
-    );
+    const filtered = mitras.filter(mitra => {
+      const sanitizedKeyword = keywordText.replace(/[^a-zA-Z0-9 ]/g, ''); // Remove special characters
+      const lowerCaseSanitizedKeyword = sanitizedKeyword.toLowerCase();
+      const lowerCaseName = mitra.name
+        .toLowerCase()
+        .replace(/[^a-zA-Z0-9 ]/g, '');
+
+      return (
+        mitra.products?.some(product => {
+          const lowerCaseProductName = product.name
+            .toLowerCase()
+            .replace(/[^a-zA-Z0-9 ]/g, '');
+          return lowerCaseProductName.includes(lowerCaseSanitizedKeyword);
+        }) || lowerCaseName.includes(lowerCaseSanitizedKeyword)
+      );
+    });
+
     setFilteredMitras(filtered);
     navigation.navigate('Product List', {keyword: keywordText});
   };
@@ -40,6 +54,7 @@ const LayoutSearchBar = ({navigation, type, keyword}) => {
           isAutoFocus={true}
           text={keywords}
           onPress={handleSearchPress}
+          placeholder={placeholder}
         />
       </View>
       {type === 'list' ? (

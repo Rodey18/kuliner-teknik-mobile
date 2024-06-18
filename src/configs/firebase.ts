@@ -11,6 +11,7 @@ import {
 } from '@env';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import {getFirestore} from 'firebase/firestore';
+import {getStorage} from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
@@ -27,5 +28,9 @@ const FIREBASE_DB = getFirestore(FIREBASE_APP);
 const FIREBASE_AUTH = initializeAuth(FIREBASE_APP, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
+const FIREBASE_STORAGE = getStorage(
+  FIREBASE_APP,
+  'gs://kuliner-teknik-v1.appspot.com',
+);
 
-export {FIREBASE_APP, FIREBASE_DB, FIREBASE_AUTH};
+export {FIREBASE_APP, FIREBASE_DB, FIREBASE_AUTH, FIREBASE_STORAGE};

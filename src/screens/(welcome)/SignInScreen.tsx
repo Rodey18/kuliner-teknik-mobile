@@ -19,29 +19,8 @@ const SignInScreen = ({navigation}: any) => {
   const [isDisable, setIsDisable] = useState(true);
 
   const handleSubmit = async () => {
-    try {
-      if (emailText && passwordText) {
-        const result = await signin(emailText, passwordText);
-        if (result?.error) {
-          throw Error('Terdapat kesalahan dalam melakukan sign in');
-        }
-      }
-    } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
-        Alert.alert(
-          'Akun Anda tidak ditemukan! Silakan untuk membuat akun baru',
-        );
-      } else if (
-        error.code === 'auth/invalid-email' ||
-        error.code === 'auth/invalid-password' ||
-        error.code === 'auth/invalid-credential'
-      ) {
-        Alert.alert('Email atau kata sandi yang Anda masukkan tidak valid.');
-      } else if (error.code === 'auth/network-request-failed') {
-        Alert.alert('Terjadi masalah dengan koneksi jaringan Anda.');
-      } else {
-        Alert.alert('Sign in gagal! silakan coba lagi nanti');
-      }
+    if (emailText && passwordText) {
+      await signin(emailText, passwordText);
     }
   };
 

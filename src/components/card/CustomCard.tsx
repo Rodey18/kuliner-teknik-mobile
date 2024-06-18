@@ -7,12 +7,12 @@ import TextHighlight from 'components/ui/TextHighlight';
 import {calculatePriceRange, getMitraTimeRange} from 'utils/helper';
 import {Mitra} from 'utils/type';
 import {useMitraContext} from 'stores/mitra/MitraContext';
-import {filterSliders} from 'data/dummy';
+import {filterSliders} from 'constants/default';
 
 type Card = {
   isHorizontal: boolean;
   navigation: any;
-  mitras: Mitra[];
+  mitras: Mitra[] | undefined;
 };
 
 const CustomCard: React.FC<Card> = (props: Card) => {

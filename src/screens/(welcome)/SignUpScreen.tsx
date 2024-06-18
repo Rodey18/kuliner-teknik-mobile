@@ -1,10 +1,4 @@
-import {
-  Alert,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   checkEmail,
@@ -32,26 +26,8 @@ const SignUpScreen = ({navigation}: any) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      if (emailText && passwordText) {
-        const result = await signup(
-          emailText,
-          passwordText,
-          phoneText,
-          usernameText,
-        );
-        if (result?.error) {
-          throw Error('Terdapat kesalahan dalam melakukan sign in');
-        }
-      }
-    } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        Alert.alert('Email atau kata sandi yang Anda masukkan tidak valid.');
-      } else if (error.code === 'auth/network-request-failed') {
-        Alert.alert('Terjadi masalah dengan koneksi jaringan Anda.');
-      } else {
-        Alert.alert('Registrasi gagal! silakan coba lagi nanti');
-      }
+    if (emailText && passwordText) {
+      await signup(emailText, passwordText, phoneText, usernameText);
     }
   };
 

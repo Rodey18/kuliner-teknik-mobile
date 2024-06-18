@@ -13,6 +13,7 @@ import SettingScreen from 'screens/(main-content)/SettingScreen';
 import {Mitra} from 'utils/type';
 import {MitraProvider} from 'stores/mitra/MitraContext';
 import ReviewScreen from 'screens/(main-content)/ReviewScreen';
+import FormMitraScreen from 'screens/(main-content)/FormMitraScreen';
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -89,6 +90,11 @@ const HomeStackScreen = () => {
           name="Setting"
           component={SettingScreen}
           options={{headerTitle: 'Atur Akun'}}
+        />
+        <HomeStack.Screen
+          name="Form Mitra"
+          component={FormMitraScreen}
+          options={{headerTitle: 'Form Jadi Mitra'}}
         />
       </HomeStack.Navigator>
     </MitraProvider>

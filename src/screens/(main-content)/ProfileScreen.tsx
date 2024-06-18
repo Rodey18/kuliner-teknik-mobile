@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import CustomLogo from 'components/CustomLogo';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {COLOR, FONT} from 'constants/theme';
 import useAuth from 'hooks/useAuth';
+import UserLogo from 'components/ui/UserLogo';
 interface ProfileScreenProps {
   navigation: any;
 }
@@ -23,9 +23,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
         style={styles.card}
         onPress={() => console.log('Kartu 1 ditekan')}>
         <View style={styles.cardContainer}>
-          <CustomLogo />
+          <UserLogo img={user?.photoURL} />
           <View>
-            <Text style={styles.cardTitle}>Nasi Kuning Pojok, Gowa</Text>
+            <Text style={styles.cardTitle}>{user?.displayName}</Text>
             <Text style={styles.cardDetails}>085211234567</Text>
             <Text style={styles.cardDetails}>user@gmail.com</Text>
           </View>
@@ -55,12 +55,14 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
           <Text style={styles.listItemText}>Bahasa</Text>
         </View>
         {/* Jadi Mitra */}
-        <View style={styles.listItem}>
+        <TouchableOpacity
+          style={styles.listItem}
+          onPress={() => navigation.navigate('Form Mitra')}>
           <View style={styles.listItemIcon}>
             <FontAwesome5Icon name="briefcase" size={20} color="black" />
           </View>
           <Text style={styles.listItemText}>Jadi Mitra</Text>
-        </View>
+        </TouchableOpacity>
         {/* Atur Akun */}
         <TouchableOpacity
           style={styles.listItem}
@@ -126,7 +128,6 @@ const styles = StyleSheet.create({
   cardDetails: FONT.identifier,
   akunSayaContainer: {
     marginTop: 24,
-    alignSelf: 'flex-start',
     backgroundColor: COLOR.color60,
     borderRadius: 5,
   },
